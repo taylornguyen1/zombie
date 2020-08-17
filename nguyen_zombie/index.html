@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Zombie hunter</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+
+<img id="zombie"  src="images/zombie.png" alt="zombie">
+
+<p>Score:</p>
+<p id="score">0</p>
+
+<button id="end" onclick="end_game()">End game</button>
+
+<audio id="audio" src="src/sound.wav"></audio>
+
+<script>
+let mytop = 0;
+let myLeft = 0;
+let count = 0;
+
+let width = window.innerWidth
+|| document.documentElement.clientWidth
+|| document.body.clientWidth;
+
+
+let height = window.innerHeight
+|| document.documentElement.clientHeight
+|| document.body.clientHeight;
+
+
+
+function end_game(){
+   document.getElementById("score").innerHTML = count = 0; 
+}
+
+function move(){
+    mytop=(Math.random()*(height-200));
+    myLeft=(Math.random()*(width-200));
+    document.getElementById("zombie").style.left=myLeft+"px"
+	document.getElementById("zombie").style.top=mytop+"px"
+    document.getElementById("zombie").src="images/zombie.png";
+    }
+
+setInterval(function(){move()}, 2000)
+
+
+
+ function click(){
+    document.getElementById("zombie").src="images/explode.gif"; 
+    count++;
+    document.getElementById("score").innerHTML = count;
+    sound()
+ 
+    }
+    
+zombie.onclick=click
+
+function sound(){
+document.getElementById("zombie").addEventListener("click", function(){
+    document.getElementById("audio").play();
+})
+}
+
+</script>
+</body>
+</html>
